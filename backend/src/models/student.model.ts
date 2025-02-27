@@ -1,4 +1,14 @@
 import mongoose from "mongoose";
+import { Document } from "mongoose";
+
+
+export interface StudentData {
+  name: string;
+  age: number;
+  course: string;
+}
+
+export interface IStudent extends Document, StudentData { };
 
 const StudentSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -6,6 +16,5 @@ const StudentSchema = new mongoose.Schema({
   course: { type: String, required: true },
 });
 
-const Student = mongoose.model("Students", StudentSchema);
+export const Student = mongoose.model<IStudent>("Students", StudentSchema);
 
-export default Student;
